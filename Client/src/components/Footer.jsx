@@ -10,9 +10,7 @@ const Footer = () => {
                     <img src={assets.logo} alt="logo" className='w-32 sm:w-44' />
 
                     <p className='max-w-102.5 mt-6'>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Rerum unde quaerat eveniet cumque accusamus atque qui error
-                        quo enim fugiat?
+                        Stay ahead with expertly crafted articles covering programming, software development, AI, career guidance, and emerging technologies. Learn something new every day with content designed for students, developers, and tech enthusiasts.
                     </p>
                 </div>
                 <div className='flex flex-wrap justify-between w-full md:w-[45%] gap-5'>
