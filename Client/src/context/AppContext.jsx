@@ -18,6 +18,15 @@ export const AppPorvider = ({children}) => {
     const [blogs, setBlogs] = useState([]);
     const [input, setInput] = useState("");
 
+    const updateToken = (nextToken) => {
+        setToken(nextToken)
+        if (nextToken) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${nextToken}`
+        } else {
+            delete axios.defaults.headers.common['Authorization']
+        }
+    }
+
     const fetcBlogs = async()=>{
         try {
             const {data} = await axios.get('/api/blog/all')
@@ -31,13 +40,12 @@ export const AppPorvider = ({children}) => {
         fetcBlogs();
         const token = localStorage.getItem('token')
         if(token){
-            setToken(token)
-            axios.defaults.headers.common['Authorization'] = `${token}`
+            updateToken(token)
         }
     },[])
 
     const value = {
-        axios, navigate, token, setToken, blogs, setBlogs, input, setInput
+        axios, navigate, token, setToken: updateToken, blogs, setBlogs, input, setInput
     }
 
     return(

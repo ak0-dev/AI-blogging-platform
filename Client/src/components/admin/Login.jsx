@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAppContext } from '../../context/AppContext'
 import toast from 'react-hot-toast'
 
@@ -16,7 +16,6 @@ const Login = () => {
             if(data.success){
                 setToken(data.token)
                 localStorage.setItem('token', data.token)
-                axios.defaults.headers.common['Authorization'] = data.token;
             }
             else{
                 toast.error(data.message)

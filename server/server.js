@@ -9,9 +9,16 @@ const app = express();
 
 await connectDB()
 
+const allowedOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim())
+    : ['http://localhost:5173']
+
 //middleware
 
-app.use(cors())
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}))
 app.use(express.json())
 
 //Routes
@@ -21,8 +28,10 @@ app.use('/api/blog', blogRouter)
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log('Server is running on port '+PORT)
-})
+if (!process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log('Server is running on port '+PORT)
+    })
+}
 
 export default app;

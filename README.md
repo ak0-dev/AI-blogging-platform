@@ -94,15 +94,18 @@ ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=replace-with-a-strong-password
 
 MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-host>
+MONGODB_DB_NAME=quickblog
 
 IMAGEKIT_PUBLIC_KEY=your-imagekit-public-key
 IMAGEKIT_PRIVATE_KEY=your-imagekit-private-key
 IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your-imagekit-id
 
 GEMINI_API_KEY=your-gemini-api-key
+
+CORS_ORIGIN=https://your-frontend-domain.example
 ```
 
-The server connects to the `quickblog` database under the MongoDB URI.
+The server connects to the `quickblog` database by default. Set `MONGODB_DB_NAME` when a different database name is required.
 
 ### 3. Configure the client
 
@@ -170,7 +173,7 @@ Run these commands from `server`:
 
 ## API overview
 
-The API runs on port `3000` by default. Protected routes require the JWT returned by the admin login endpoint in the `Authorization` header.
+The API runs on port `3000` by default. Protected routes require the JWT returned by the admin login endpoint in the `Authorization: Bearer <token>` header.
 
 ### Public blog routes
 
